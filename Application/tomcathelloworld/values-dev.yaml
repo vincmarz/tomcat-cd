@@ -108,7 +108,7 @@ deploy:
   #    image: registry.redhat.io/ubi8/ubi-minimal
 global:
   ## Override the release name
-  nameOverride: tomcathellowworld
+  nameOverride: tomcathelloworld
   serviceName: tomcat
   runTime: tomcat
   namespace: cd-tomcat
