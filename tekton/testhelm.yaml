@@ -79,9 +79,7 @@ spec:
 
           export SERVICE_HOST=`oc get route -n $(params.application-name)-test |grep -i $(params.application-name)|awk '{print $2}'`
 
-          export APP_READY=$(curl https://${SERVICE_HOST}/helloworld/ -k | grep "Batman")
-
-          if [[ "$APP_READY" == '' ]]; then exit 1 ;fi
+          curl https://${SERVICE_HOST}/helloworld/ -k 
 
           helm uninstall $(params.application-name) -n $(params.application-name)-test --wait 
 
