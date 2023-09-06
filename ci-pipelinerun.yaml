@@ -1,0 +1,47 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: demo-pipeline-
+  namespace: ci-pipelines
+  labels:
+    tekton.dev/pipeline: demo-pipeline
+spec:
+  params:
+    - name: APP_NAME
+      value: tomcathelloworld
+    - name: GIT_REPO
+      value: 'https://github.com/rockocoop/tomcathelloworld.git'
+    - name: GIT_REVISION
+      value: main
+    - name: IMAGE_NAME
+      value: quay.io/grakover/tomcathelloworld
+    - name: PATH_CONTEXT
+      value: .
+    - name: IMAGE_TAG
+      value: '1'
+    - name: GIT_CD_REPO
+      value: 'https://github.com/rockocoop/tomcat-cd.git'
+    - name: BUILD
+      value: 'False'
+    - name: DEPLOY_ENV
+      value: dev
+    - name: SERVICE_NAME
+      value: frontend
+    - name: GIT_URL
+      value: github.com
+    - name: GIT_USER
+      value: rockocoop
+    - name: GIT_TOKEN
+      value: github
+    - name: CONN
+      value: https
+    - name: REPO_NAME
+      value: tomcat-cd
+  pipelineRef:
+    name: demo-pipeline
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
+  workspaces:
+    - name: workspace
+      persistentVolumeClaim:
+        claimName: cibuilds
