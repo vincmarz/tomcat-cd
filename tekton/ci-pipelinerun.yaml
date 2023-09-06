@@ -22,7 +22,7 @@ spec:
     - name: GIT_CD_REPO
       value: 'https://github.com/rockocoop/tomcat-cd.git'
     - name: BUILD
-      value: 'True'
+      value: 'False'
     - name: DEPLOY_ENV
       value: dev
     - name: SERVICE_NAME
