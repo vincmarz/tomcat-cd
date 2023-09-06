@@ -15,7 +15,7 @@ spec:
       name: '{{global.nameOverride}}-{{global.serviceName}}-{{path[1]}}'
     spec:
       destination:
-        namespace: '{{global.nameOverride}}-{{path[1]}}'
+        namespace: 'cd-{{global.nameOverride}}'
         server: 'https://kubernetes.default.svc'
       project: default
       source:
