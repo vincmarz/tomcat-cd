@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-cd
+  namespace: openshift-gitops
+spec:
+  generators:
+    - git:
+        files:
+          - path: Application/*/values-*.yaml
+        repoURL: 'https://github.com/rockocoop/tomcat-cd.git'
+        revision: main
+  template:
+    metadata:
+      name: '{{global.nameOverride}}-{{global.serviceName}}-{{path[1]}}'
+    spec:
+      destination:
+        namespace: '{{global.nameOverride}}-{{path[1]}}'
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        helm:
+          valueFiles:
+            - '{{path[1]}}/{{path.filename}}'
+        path: '{{path[0]}}'
+        repoURL: 'https://github.com/rockocoop/tomcat-cd.git'
+        targetRevision: main
+      syncPolicy:
+        managedNamespaceMetadata:
+          labels:
+            argocd.argoproj.io/managed-by: openshift-gitops
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
