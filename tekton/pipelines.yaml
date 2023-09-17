@@ -112,9 +112,38 @@ spec:
     - name: http
       value: $(params.CONN)
     runAfter:
-    - build
+    - test-chart
     taskRef:
       kind: ClusterTask
       name: update-chart
+  - name: test-chart
+    params:
+    - name: git-url-source
+      value: $(params.GIT_URL)
+    - name: git-user
+      value: $(params.GIT_USER)
+    - name: git-repo-name
+      value: $(params.REPO_NAME)
+    - name: tag
+      value: $(tasks.fetch-repository.results.commit)
+    - name: image
+      value: $(params.IMAGE_NAME)
+    - name: branch
+      value: $(params.GIT_REVISION)
+    - name: git-secret-name
+      value: $(params.GIT_TOKEN)
+    - name: application-name
+      value: $(params.APP_NAME)
+    - name: deploy-env
+      value: $(params.DEPLOY_ENV)
+    - name: service-name
+      value: $(params.SERVICE_NAME)
+    - name: http
+      value: $(params.CONN)
+    runAfter:
+    - build
+    taskRef:
+      kind: ClusterTask
+      name: test-chart
   workspaces:
   - name: workspace
