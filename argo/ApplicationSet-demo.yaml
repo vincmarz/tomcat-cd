@@ -8,7 +8,7 @@ spec:
     - git:
         files:
           - path: Application/*/values-*.yaml
-        repoURL: 'https://github.com/rockocoop/tomcat-cd.git'
+        repoURL: 'https://github.com/vincmarz/tomcat-cd.git'
         revision: main
   template:
     metadata:
@@ -23,7 +23,7 @@ spec:
           valueFiles:
             - '{{path[1]}}/{{path.filename}}'
         path: '{{path[0]}}'
-        repoURL: 'https://github.com/rockocoop/tomcat-cd.git'
+        repoURL: 'https://github.com/vincmarz/tomcat-cd.git'
         targetRevision: main
       syncPolicy:
         managedNamespaceMetadata:

@@ -8,13 +8,13 @@ spec:
   - default: tomcathelloworld
     name: APP_NAME
     type: string
-  - default: https://github.com/rockocoop/tomcathelloworld.git
+  - default: https://github.com/vincmarz/tomcathelloworld.git
     name: GIT_REPO
     type: string
   - default: main
     name: GIT_REVISION
     type: string
-  - default: quay.io/grakover/tomcathelloworld
+  - default: docker.io/vincmarz/tomcathelloworld
     name: IMAGE_NAME
     type: string
   - default: .
@@ -22,7 +22,7 @@ spec:
     type: string
   - name: IMAGE_TAG
     type: string
-  - default: https://github.com/rockocoop/tomcat-cd.git
+  - default: https://github.com/vincmarz/tomcat-cd.git
     name: GIT_CD_REPO
     type: string
   - default: "True"

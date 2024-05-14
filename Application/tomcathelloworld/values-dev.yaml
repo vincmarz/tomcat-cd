@@ -41,7 +41,7 @@ deploy:
       destinationCACertificate:
   ingress:
     enabled: true
-    Domain: apps.joker.openshift4.com
+    Domain: apps.ocp4.local
     ## More information: https://docs.openshift.com/container-platform/4.6/networking/routes/secured-routes.html
     tls:
       enabled: true
